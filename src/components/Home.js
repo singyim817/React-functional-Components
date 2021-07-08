@@ -33,7 +33,7 @@ function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {patientData.map(patient =><RowCreator item={patient}/>)}
+                    {patientData.map((patient, idx) =><RowCreator item={patient} key={idx} />)}
                 </tbody>
                 
             </table>

@@ -14,7 +14,8 @@ function AnalyzeData(props) {
         // Code for componentWillMount here
         // This code is called only one time before intial render
         axios.get("http://localhost:8088/clinicalservices/api/patients/analyze/" + props.match.params.patientId).then(res => {
-            const {firstName, lastName, age, clinicalData} = res.data;
+            const {id, firstName, lastName, age, clinicalData} = res.data;
+            setId(id);
             setFirstName(firstName);
             setLastName(lastName);
             setAge(age);
@@ -34,14 +35,14 @@ function AnalyzeData(props) {
             Last Name: {lastName}
             Age: {age}
             <h2>Clinical Reports: </h2>
-            {clinicalData.map(eachEntry => <RowCreator item={eachEntry} patientId={id} />)}
+            {clinicalData.map((eachEntry, idx) => <RowCreator item={eachEntry} patientId={id} key={idx} />)}
         </div>
     );
 }
 
 function RowCreator(props) {
     var eachEntry = props.item;
-    var patientId = props.patientId;
+    // var patientId = props.patientId;
     return (
         <div>
             <table>
